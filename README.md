@@ -30,7 +30,7 @@ nbf (not before time): Time before which the JWT must not be accepted for proces
 iat (issued at time): Time at which the JWT was issued; can be used to determine age of the JWT<br/>
 jti (JWT ID): Unique identifier; can be used to prevent the JWT from being replayed (allows a token to be used only once)
 
-### Authorization / validatition of a token
+### Authorization / validation of a token
 Once we have the token we can post it to 'http://localhost/api/auth/OAuth2' to validate it. If the token is valid, a new token is returned from this call. From here on, whenever we're making a request we will be posting the token to 'http://localhost/api/auth/OAuth2' for validation before proceeding with the request.
 ```
 curl -X POST http://localhost/api/auth/OAuth2 -H 'Content-Type: application/json' -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ5dW5nY2V0IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdC9hcGkvYXV0aC9PQXV0aDIiLCJpYXQiOiIxNjgzODg5ODY0IiwiZXhwcCI6IjE2ODM4OTM0NjQifQ.2VO69vJ3AbjizZieUkx-OJui0PRssJzXOUNxAz2ToG8' -H 'APIKEY: ed47d3d45bd9e52b7fdb06f7a94bbe7e'
