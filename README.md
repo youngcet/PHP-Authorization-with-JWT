@@ -21,6 +21,25 @@ Results
 ```
 {"message":"success","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ5dW5nY2V0IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdC9hcGkvYXV0aC9PQXV0aDIiLCJpYXQiOiIxNjgzODg5ODY0IiwiZXhwcCI6IjE2ODM4OTM0NjQifQ.2VO69vJ3AbjizZieUkx-OJui0PRssJzXOUNxAz2ToG8"}
 ```
+
+### Creating a Claim Set
+```
+// encoded to a json string
+$apikey = 'ed47d3d45bd9e52b7fdb06f7a94bbe7e';
+$payload = json_encode (['payload' => [
+    'iss' => 'yungcet',
+    'aud' => 'http://localhost/api/auth/OAuth2',
+    'iat' => time(),
+    'exp' => time() + 3600 // expire in an hour
+]]);
+
+// then you can pass $payload to a request
+curl -X POST https://localhost/api/auth/jwttoken -H 'Content-Type: application/json' -H 'APIKEY: ed47d3d45bd9e52b7fdb06f7a94bbe7e' -d '$payload'
+
+// this is equivalent to
+curl -X POST http://localhost/api/auth/jwttoken -H 'Content-Type: application/json' -H 'APIKEY: ed47d3d45bd9e52b7fdb06f7a94bbe7e' -d '{"payload":{"iss":"yungcet","aud":"[http://localhost/api/auth/OAuth2](http://localhost/api/auth/OAuth2)","iat":"1683881873", "exp":"1683885473"}}'
+```
+
 ### Registered Claim Set
 iss (issuer): Issuer of the JWT<br/>
 sub (subject): Subject of the JWT (the user)<br/>
